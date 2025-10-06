@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Tour | Shyam Travels Agency</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="favicon.png">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <section class="nav-bar">
+    <div class="logo">Shyam Travels Agency</div>
+    <ul class="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="tours.html">Tours</a></li>
+      <li><a href="packages.html">Packages</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="book.html">Book</a></li>
+    </ul>
+  </section>
+
+  <!-- Booking Section -->
+  <section class="places" style="min-height:70vh;">
+    <div class="places-text">
+      <small>BOOK YOUR TOUR</small>
+      <h2>Online Booking Form</h2>
+    </div>
+    <form style="max-width:430px;background:#fff;padding:28px 28px 16px 28px;border-radius:12px;margin-top:24px;box-shadow:0 8px 32px rgba(52,143,80,0.09);">
+      <label for="name" style="font-weight:600;color:#348F50;">Full Name:</label><br>
+      <input type="text" id="name" name="name" placeholder="Your Name" style="width:100%;padding:11px;margin:7px 0 17px 0;border-radius:6px;border:1px solid #d9e4ec;"><br>
+      
+      <label for="email" style="font-weight:600;color:#348F50;">Email:</label><br>
+      <input type="email" id="email" name="email" placeholder="Your Email" style="width:100%;padding:11px;margin:7px 0 17px 0;border-radius:6px;border:1px solid #d9e4ec;"><br>
+      
+      <label for="package" style="font-weight:600;color:#348F50;">Select Tour/Package:</label><br>
+      <select id="package" name="package" style="width:100%;padding:11px;margin:7px 0 17px 0;border-radius:6px;border:1px solid #d9e4ec;">
+        <option value="">Choose...</option>
+        <option value="Jaipur Heritage Tour">Jaipur Heritage Tour</option>
+        <option value="Goa Beach Fun">Goa Beach Fun</option>
+        <option value="Hill Station Holiday">Hill Station Holiday</option>
+      </select><br>
+      
+      <label for="date" style="font-weight:600;color:#348F50;">Preferred Date:</label><br>
+      <input type="date" id="date" name="date" style="width:100%;padding:11px;margin:7px 0 17px 0;border-radius:6px;border:1px solid #d9e4ec;"><br>
+      
+      <label for="persons" style="font-weight:600;color:#348F50;">Number of Persons:</label><br>
+      <input type="number" id="persons" name="persons" min="1" max="20" placeholder="No. of Persons" style="width:100%;padding:11px;margin:7px 0 17px 0;border-radius:6px;border:1px solid #d9e4ec;"><br>
+      
+      <label for="message" style="font-weight:600;color:#348F50;">Any Special Requests:</label><br>
+      <textarea id="message" name="message" placeholder="Special requests (optional)" style="width:100%;padding:11px;margin:7px 0 17px 0;border-radius:6px;border:1px solid #d9e4ec;height:80px;"></textarea><br>
+      
+      <button type="submit" style="background:#56B4D3;color:#fff;font-weight:600;border:none;padding:11px 32px;border-radius:6px;letter-spacing:1px;cursor:pointer;transition:background 0.3s;">Book Now</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li>Offers & Discounts</li>
+        <li>Get Coupon</li>
+        <li>Contact Us</li>
+        <li>About</li>
+      </ul>
+    </div>
+    <div class="links">
+      <h3>Support</h3>
+      <ul>
+        <li>FAQ</li>
+        <li>Report a Payment Issue</li>
+        <li>Terms & Conditions</li>
+        <li>Privacy Policy</li>
+      </ul>
+    </div>
+    <div class="links">
+      <h3>Destinations</h3>
+      <ul>
+        <li>Hill Stations</li>
+        <li>Beach Tours</li>
+        <li>Cultural Tours</li>
+        <li>Pilgrimage</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shyam Travels Agency</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
+  <link rel="shortcut icon" href="favicon.png">
+  <style>
+    :root {
+      --primary: #f6f8fb;
+      --accent: #2980b9;
+      --bg-light: #f2f3f5;
+      --glass-bg: rgba(5, 77, 165, 0.962);
+      --glass-border: rgba(255,255,255,0.24);
+      --nav-bg: rgba(255,255,255,0.90);
+      --shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.18);
+      --white: #030303;
+      --golden: #ffd700;
+    }
+
+    /* Video Background Style */
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100vw;
+      min-height: 100vh;
+      width: auto;
+      height: auto;
+      object-fit: cover;
+      z-index: -1;
+      background: #000;
+    }
+
+    /* Global Styles */
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(135deg, #c3cfe2 0%, #a1c4fd 100%);
+      color: #273142;
+      overflow-x: hidden;
+    }
+
+    /* Nav Bar Styles */
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      background: var(--nav-bg);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(7px);
+      border-radius: 0 0 24px 24px;
+      border-bottom: 1.5px solid var(--accent);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: black;
+      letter-spacing: 1px;
+    }
+    .logo img {
+      height: 48px;
+      margin-right: 12px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(41,128,185,0.25);
+      object-fit: cover;
+    }
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      margin: 0;
+      padding: 0;
+    }
+    .menu li a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 1.05rem;
+      background: linear-gradient(90deg, var(--accent), #00080a 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      transition: color 0.3s ease;
+      letter-spacing: 0.02em;
+    }
+    .menu li a:hover {
+      color: var(--accent);
+    }
+    .menu li a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      border-radius: 4px;
+      background: var(--golden);
+      transition: width 0.3s ease;
+    }
+    .menu li a:hover::after {
+      width: 100%;
+    }
+
+    /* Banner Section */
+    .banner {
+      background: var(--glass-bg);
+      border-radius: 28px;
+      margin: 2.5rem auto 3rem;
+      max-width: 1100px;
+      padding: 2.5rem 3rem;
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--glass-border);
+      backdrop-filter: blur(9px);
+      text-align: center;
+      animation: fadeIn 1s ease forwards;
+    }
+    .banner-text-item {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .banner-heading h1 {
+      color: var(--primary);
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+    }
+    .form {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .form input[type="text"], .form input[type="date"] {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1.5px solid var(--accent);
+      width: 180px;
+      transition: box-shadow 0.3s ease;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .form input[type="text"]:focus, .form input[type="date"]:focus {
+      outline: none;
+      box-shadow: 0 0 12px var(--accent);
+      border-color: var(--accent);
+    }
+    .form .book {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--accent), var(--golden));
+      color: var(--white);
+      border-radius: 22px;
+      padding: 0.78rem 2rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(41,128,185,0.35);
+      transition: background 0.25s ease;
+      line-height: 1;
+      user-select: none;
+    }
+    .form .book:hover {
+      background: linear-gradient(270deg, var(--golden), var(--accent));
+      color: var(--white);
+    }
+
+    /* Services Section */
+    .services {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto 3rem;
+      padding: 0 1rem;
+    }
+    .service-item {
+      flex: 1 1 220px;
+      background: var(--glass-bg);
+      border-radius: 22px;
+      border: 1.5px solid var(--glass-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+    .service-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 28px rgba(41,128,185,0.3);
+    }
+    .service-item img {
+      width: 90px;
+      margin-bottom: 1.2rem;
+    }
+    .service-item h2 {
+      color: var(--primary);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* Places Section */
+    .places {
+      max-width: 980px;
+      margin: 0 auto 3rem;
+      padding: 0 1rem;
+    }
+    .places-text small {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.25rem;
+      user-select: none;
+    }
+    .places-text h2 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 1.3rem;
+      letter-spacing: 0.06em;
+      user-select: none;
+    }
+    .cards {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .card {
+      width: 300px;
+      background: var(--glass-bg);
+      border-radius: 26px;
+      border: 1.6px solid var(--glass-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 18px 48px rgba(46,134,222,0.3);
+    }
+    .img-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      transition: transform 0.25s ease;
+    }
+    .card:hover .img-card img {
+      transform: scale(1.08);
+    }
+    .text {
+      padding: 1.3rem 1.5rem 2rem;
+      color: var(--primary);
+    }
+    .rating {
+      font-size: 1.15rem;
+      color: var(--golden);
+      user-select: none;
+    }
+    .text h2 {
+      margin: 0.3rem 0 0.7rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 0.03em;
+    }
+    .cost {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 0.8rem;
+      color: var(--accent);
+    }
+    .card-box {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: 0.02em;
+      user-select: none;
+    }
+
+    /* About Section */
+    .about {
+      max-width: 980px;
+      margin: 0 auto 5rem;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      padding: 0 1rem;
+      user-select: none;
+    }
+    .about-img img {
+      width: 300px;
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      border: 2px solid var(--golden);
+      object-fit: cover;
+    }
+    .about-text small {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+    .about-text h2 {
+      font-size: 2.3rem;
+      color: var(--primary);
+      margin-bottom: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+    .about-text p {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--primary);
+      margin-bottom: 1.1rem;
+    }
+    .about-text label {
+      display: block;
+      font-size: 1.1rem;
+      margin: 0.4rem 0;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .about-text a {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+    .about-text a:hover {
+      color: var(--golden);
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 28px 28px 0 0;
+      padding: 3rem 2rem 2rem;
+      box-shadow: var(--shadow);
+      color: var(--primary);
+      font-weight: 600;
+      user-select: none;
+      flex-wrap: wrap;
+    }
+    .footer .links {
+      min-width: 160px;
+    }
+    .footer h3 {
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+    }
+    .footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .footer li {
+      color: #fdfeff;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.25s ease;
+      margin-bottom: 0.55rem;
+    }
+    .footer li:hover {
+      color: var(--golden);
+    }
+
+    /* 🎵 Music Button Styling */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(41, 128, 185, 0.9);
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: background 0.3s ease;
+      z-index: 200;
+    }
+    .music-btn:hover {
+      background: rgba(255, 215, 0, 0.9);
+      color: #000;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-bar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+        border-radius: 0 0 24px 24px;
+        text-align: center;
+      }
+      .menu {
+        justify-content: center;
+        gap: 15px;
+      }
+      .banner, .about, .services, .places, .footer {
+        margin: 1.5rem 1rem 2rem;
+        padding: 1.8rem 1rem;
+      }
+      .places-text h2 {
+        font-size: 2rem;
+      }
+      .about {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .about-img img {
+        max-width: 90vw;
+        height: auto;
+      }
+      .footer {
+        flex-direction: column;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 🎥 Background Video -->
+  <video id="bg-video" autoplay muted loop class="video-bg">
+    <source src="video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- 🎵 Background Music -->
+  <audio id="bg-music" loop autoplay>
+    <source src="bg-music.mp3" type="audio/mp3">
+    Your browser does not support the audio tag.
+  </audio>
+
+  <!-- 🎵 Mute/Unmute Button -->
+  <button class="music-btn" id="muteBtn">🔊 Mute</button>
+
+  <!-- Nav Bar -->
+  <section class="nav-bar">
+    <div class="logo">
+      <img src="myphoto.jpg" alt="Logo" />
+      Shyam Travels Agency
+    </div>
+    <ul class="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="tours.html">Tours</a></li>
+      <li><a href="packages.html">Packages</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </section>
+
+  <!-- Banner -->
+  <section class="banner">
+    <div class="banner-text-item">
+      <div class="banner-heading">
+        <h1>Find your next tour with Shyam Travels!</h1>
+      </div>
+      <form class="form">
+        <input type="text" list="mylist" placeholder="Where would you like to go?" />
+        <datalist id="mylist">
+          <option>Jaipur</option>
+          <option>Shimla</option>
+          <option>Manali</option>
+          <option>Goa</option>
+          <option>Mumbai</option>
+          <option>Varanasi</option>
+          <option>Kerala</option>
+          <option>Luxembourg</option>
+        </datalist>
+        <input type="date" class="date" />
+        <a href="#" class="book">Book</a>
+      </form>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services">
+    <div class="service-item">
+      <img src="https://buy.sulit.tech/wp-content/uploads/2023/09/maps-local-guide-1536x804.jpeg" alt="Expert Local Guides" />
+      <h2>Expert Local Guides</h2>
+    </div>
+    <div class="service-item">
+      <img src="https://tse4.mm.bing.net/th/id/OIP.tBXRJsxd2JxVVK9Lgzo9vwHaHa" alt="Trusted Tour Agency" />
+      <h2>100% Trusted Tour Agency</h2>
+    </div>
+    <div class="service-item">
+      <img src="https://miro.medium.com/v2/resize:fit:1358/1*8H1XMVJIesJZ2rgNMqJMTQ.jpeg" alt="Affordable Price" />
+      <h2>Affordable Tour Prices</h2>
+    </div>
+    <div class="service-item">
+      <img src="https://th.bing.com/th/id/OIP.fUC9EabxbJLovEJIYYsGyAHaIJ?w=161&h=180&c=7&r=0&o=5&pid=1.7" alt="24/7 Support" />
+      <h2>24/7 Dedicated Support</h2>
+    </div>
+  </section>
+
+  <!-- Places -->
+  <section class="places">
+    <div class="places-text">
+      <small>FEATURED TOURS</small>
+      <h2>Most Popular Tours</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="img-card">
+          <img src="https://cdn.audleytravel.com/-/-/79/200000219235128026200077151242230176128127016231.jpg" alt="Jaipur" />
+        </div>
+        <div class="text">
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+          <h2>Jaipur</h2>
+          <div class="cost">From ₹10,000</div>
+          <div class="card-box">
+            <p class="time">7 Days</p>
+            <p class="location">India</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-card">
+          <img src="https://voiceofadventure.com/wp-content/uploads/2022/06/60d0813807aff-Baga_Beach_In_Goa.jpg" alt="Goa" />
+        </div>
+        <div class="text">
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+          <h2>Goa</h2>
+          <div class="cost">From ₹8,000</div>
+          <div class="card-box">
+            <p class="time">5 Days</p>
+            <p class="location">India</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-card">
+          <img src="https://tse3.mm.bing.net/th/id/OIP.t8pIzeUkr_akpPfwfGEzagAAAA?w=360&h=225&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Kerala" />
+        </div>
+        <div class="text">
+          <div class="rating">⭐⭐⭐⭐</div>
+          <h2>Kerala</h2>
+          <div class="cost">From ₹12,000</div>
+          <div class="card-box">
+            <p class="time">6 Days</p>
+            <p class="location">India</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about">
+    <div class="about-img">
+      <img src="about.jpg" alt="About Shyam Travels" />
+    </div>
+    <div class="about-text">
+      <small>ABOUT US</small>
+      <h2>Shyam Travels Agency</h2>
+      <p>
+        Shyam Travels Agency is your trusted companion for unforgettable journeys.
+        With years of experience, we offer expert local guides, affordable packages,
+        and 24/7 customer support to ensure your travel experience is seamless.
+      </p>
+      <label>✔ Customized Packages</label>
+      <label>✔ 24/7 Customer Support</label>
+      <label>✔ Affordable Pricing</label>
+      <label>✔ Trusted by Thousands</label>
+      <a href="about.html">Read More...</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section class="footer">
+    <div class="links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li>Home</li>
+        <li>Tours</li>
+        <li>Packages</li>
+        <li>Blog</li>
+        <li>About Us</li>
+        <li>Contact Us</li>
+      </ul>
+    </div>
+    <div class="links">
+      <h3>Services</h3>
+      <ul>
+        <li>Expert Guides</li>
+        <li>Tour Packages</li>
+        <li>Custom Trips</li>
+        <li>24/7 Support</li>
+      </ul>
+    </div>
+    <div class="links">
+      <h3>Contact</h3>
+      <ul>
+        <li>Email: info@shyamtravels.com</li>
+        <li>Phone: +91 9876543210</li>
+        <li>Address: Jaipur, Rajasthan, India</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 🎵 Music & Video Control Script -->
+  <script>
+    const music = document.getElementById("bg-music");
+    const muteBtn = document.getElementById("muteBtn");
+    const video = document.getElementById("bg-video");
+
+    // Ensure video autoplay works
+    window.addEventListener("load", () => {
+      video.play().catch(err => {
+        console.log("Video autoplay blocked:", err);
+      });
+      music.play().catch(err => {
+        console.log("Music autoplay blocked:", err);
+      });
+    });
+
+    muteBtn.addEventListener("click", () => {
+      if (music.muted) {
+        music.muted = false;
+        music.play();
+        muteBtn.textContent = "🔊 Mute";
+      } else {
+        music.muted = true;
+        muteBtn.textContent = "🔇 Unmute";
+      }
+    });
+  </script>
+</body>
+</html>
